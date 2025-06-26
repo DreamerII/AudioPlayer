@@ -52,10 +52,9 @@ class PlayerViewModelTest {
         viewModel.playerStateLiveData.value = false
 
         viewModel.togglePlayback()
-        // run any pending coroutines (e.g. init observers)
         testDispatcher.scheduler.advanceUntilIdle()
 
-        verify(mockUseCase).play(any()) // played with whichever URL
+        verify(mockUseCase).play(any())
         Assert.assertTrue(viewModel.isLoading.value == true)
     }
 

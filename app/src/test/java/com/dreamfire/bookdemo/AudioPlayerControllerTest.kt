@@ -1,8 +1,5 @@
 package com.dreamfire.bookdemo
 
-//import com.nhaarman.mockitokotlin2.argumentCaptor
-//import com.nhaarman.mockitokotlin2.mock
-//import com.nhaarman.mockitokotlin2.verify
 import android.content.Context
 import android.content.Intent
 import com.dreamfire.bookdemo.player.AudioPlayerController
@@ -32,7 +29,6 @@ class AudioPlayerControllerTest {
         val url = "https://example.com/audio.mp3"
         controller.play(url)
 
-        // capture the Intent passed to startService
         val intentCaptor = argumentCaptor<Intent>()
         verify(context).startService(intentCaptor.capture())
 
