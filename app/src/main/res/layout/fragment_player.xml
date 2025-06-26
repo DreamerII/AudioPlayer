@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:padding="@dimen/padding_16">
+
+    <!-- Book Cover -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/margin_24"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/durationSeekBar">
+        <ImageView
+            android:id="@+id/coverIv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/book_cover_placeholder"
+            android:contentDescription="@string/book_cover"
+            android:scaleType="centerCrop" />
+
+        <ProgressBar
+            android:id="@+id/coverProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="visible"
+            style="?android:attr/progressBarStyle" />
+    </FrameLayout>
+
+    <!-- Playback SeekBar -->
+    <SeekBar
+        android:id="@+id/durationSeekBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/tvElapsed"
+        app:layout_constraintBottom_toBottomOf="@id/tvElapsed"
+        app:layout_constraintStart_toEndOf="@id/tvElapsed"
+        app:layout_constraintEnd_toStartOf="@id/tvRemaining"
+        android:thumbTint="?attr/colorAccent"
+        android:progressTint="?attr/colorAccent"
+        android:progressBackgroundTint="@color/black"
+        android:splitTrack="false"
+        android:secondaryProgressTint="?attr/colorControlActivated"
+        android:trackTint="?attr/colorControlHighlight" />
+
+    <!-- Elapsed Time -->
+    <TextView
+        android:id="@+id/tvElapsed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/playContainer" />
+
+    <!-- Remaining Time -->
+    <TextView
+        android:id="@+id/tvRemaining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-00:00"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/playContainer" />
+
+    <!-- Previous Chapter -->
+    <ImageButton
+        android:id="@+id/btnPrevChapter"
+        android:layout_width="@dimen/size_48"
+        android:layout_height="@dimen/size_48"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_chevron_left"
+        android:contentDescription="@string/prev_chapter"
+        app:layout_constraintTop_toTopOf="@id/playContainer"
+        app:layout_constraintBottom_toBottomOf="@id/playContainer"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Decrease Speed -->
+    <ImageButton
+        android:id="@+id/btnDecreaseSpeed"
+        android:layout_width="@dimen/size_48"
+        android:layout_height="@dimen/size_48"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_fast_rewind"
+        android:contentDescription="@string/decrease_speed"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="@id/playContainer"
+        app:layout_constraintBottom_toBottomOf="@id/playContainer"
+        app:layout_constraintStart_toEndOf="@id/btnPrevChapter" />
+
+    <!-- Play/Pause Button with Loading -->
+    <FrameLayout
+        android:id="@+id/playContainer"
+        android:layout_width="@dimen/size_64"
+        android:layout_height="@dimen/size_64"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnDecreaseSpeed"
+        app:layout_constraintEnd_toStartOf="@id/btnIncreaseSpeed"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginEnd="@dimen/margin_16">
+
+        <ImageButton
+            android:id="@+id/playBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_play_arrow"
+            android:contentDescription="@string/play_pause" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="visible"
+            style="?android:attr/progressBarStyleSmall" />
+    </FrameLayout>
+
+    <!-- Increase Speed -->
+    <ImageButton
+        android:id="@+id/btnIncreaseSpeed"
+        android:layout_width="@dimen/size_48"
+        android:layout_height="@dimen/size_48"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_fast_forward"
+        android:contentDescription="@string/increase_speed"
+        android:layout_marginEnd="@dimen/margin_16"
+        app:layout_constraintTop_toTopOf="@id/playContainer"
+        app:layout_constraintBottom_toBottomOf="@id/playContainer"
+        app:layout_constraintEnd_toStartOf="@id/btnNextChapter" />
+
+    <!-- Next Chapter -->
+    <ImageButton
+        android:id="@+id/btnNextChapter"
+        android:layout_width="@dimen/size_48"
+        android:layout_height="@dimen/size_48"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_chevron_right"
+        android:contentDescription="@string/next_chapter"
+        app:layout_constraintTop_toTopOf="@id/playContainer"
+        app:layout_constraintBottom_toBottomOf="@id/playContainer"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
